@@ -2,7 +2,7 @@
   <div class="hello">
     <h1>{{ msg }}</h1>
     <p>
-      Just testing final :)
+      Just testing final :) adding :)
       Ние разполагаме с богата колекция от вицове, които ще ви харесат, гарантирано ;)
       <br>Разполагате и с възможност да се регистрирате и да създадете собствен виц.
       <a href="https://cli.vuejs.org" target="_blank" rel="noopener">vue-cli documentation</a>.
