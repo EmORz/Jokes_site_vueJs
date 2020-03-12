@@ -21,7 +21,7 @@
           <p>
             {{ j.description }}
           </p>
-          <p><b>Дата:</b>{{ j.date }}</p>
+          <p><b>Дата:</b>{{ j.date | formatDate }}</p>
           <p><b>Автор:</b>{{ j.author }}</p>
           <button @click="j.showDescription = false" class="show-desc">
             Show Less
