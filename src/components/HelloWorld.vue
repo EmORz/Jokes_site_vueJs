@@ -23,12 +23,12 @@
           </p>
           <p><b>Дата:</b>{{ j.date | formatDate }}</p>
           <p><b>Автор:</b>{{ j.author }}</p>
-          <button @click="j.showDescription = false" class="show-desc">
+          <button @click="j.showDescription = false" class="show-desc btnH">
             Show Less
           </button>
         </template>
         <template v-else>
-          <button @click="j.showDescription = true" class="show-desc">
+          <button @click="j.showDescription = true" class="show-desc btnS">
             Show more
           </button>
         </template>
@@ -110,4 +110,16 @@ li {
 a {
   color: #42b983;
 }
+.button {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+.btnS {background-color:palegreen;} /* Blue */
+.btnH {background-color:aqua ;} /* Red */ 
 </style>
