@@ -2,16 +2,61 @@
   <div class="container">
     <h1>{{ msg }}</h1>
     <p>
-      бележки:
-      Трябва още: - регистрация - логин - логоут - изглед за логнати - не логнати
-      - връзка с база данни - за нас - контакти - логиката за добавяне на вицове - оформление;
-
-      Ние разполагаме с богата колекция от {{ count }} виц/ове, които ще ви
-      харесат, гарантирано ;) <br />Разполагате и с възможност да се
-      регистрирате и да създадете собствен виц.
+      бележки: Трябва още: - регистрация - логин - логоут - изглед за логнати -
+      не логнати - връзка с база данни - за нас - контакти - логиката за
+      добавяне на вицове - оформление; Ние разполагаме с богата колекция от
+      {{ count }} виц/ове, които ще ви харесат, гарантирано ;) <br />Разполагате
+      и с възможност да се регистрирате и да създадете собствен виц.
     </p>
     <hr class="hrTitle" size="30" />
-    <div v-for="(j, i) in jokes_bank" class="gallery" :key="i">
+    <h2>Форма за съзадаване на виц</h2>
+    <br />
+    <form>
+      <label for="category">Category</label><br />
+      <input
+        @input="setCatSource"
+        :value="catSrc"
+        type="text"
+        id="category"
+        placeholder="Your category of joke .."
+      /><br />
+      <label for="title">Title</label><br />
+      <input
+        @input="setTitle"
+        :value="titleSrc"
+        type="text"
+        id="title"
+        placeholder="Your title of joke .."
+      /><br />
+      <label for="description">Description</label><br />
+      <textarea
+        @input="setDesc"
+        :value="descSrc"
+        type="text"
+        id="description"
+        placeholder="Your description of joke .."
+      ></textarea
+      ><br />
+      <label for="author">Author</label><br />
+      <input
+        @input="setAuthor"
+        :value="authorSrc"
+        type="text"
+        id="author"
+        placeholder="Your author of joke .."
+      /><br />
+      <label for="date">Author</label><br />
+      <input
+        @input="setDate"
+        :value="dateSrc"
+        type="text"
+        id="date"
+        placeholder="Your date of joke .."
+      /><br />
+      <input type="submit" value="Submit" />
+    </form>
+    <hr class="hrTitle" size="30" />
+    <div v-for="(j, i) in jokes_bank" class="joke" :key="i">
       <div>
         <h2>{{ j.title }}</h2>
         <h5>Категория: {{ j.category }}</h5>
@@ -32,7 +77,7 @@
             Show more
           </button>
         </template>
-        <hr class="hrJokes" size="3"/>
+        <hr class="hrJokes" size="3" />
       </div>
     </div>
   </div>
@@ -57,21 +102,47 @@ export default {
           showDescription: false
         },
         {
-          category: "Mariika",
-          title: "Mariika && Mother",
+          category: "Ivancho",
+          title: "Ivancho && Father",
           description:
-            "Lorem ipsum е един от най-често използваните в печатарството и графичния дизайн заготовъчни текстове, служещи да запълват със съдържание онези графични елементи на",
-          author: "Petyr",
+            "Иванчо говори с баща си Татко,ти си голям късметлия!- Защо?- Няма нужда да ми купуваш нови учебници, оставам в същия клас!",
+          author: "Емануил",
           date: new Date(),
           showDescription: false
         }
-      ]
+      ],
+      catSrc: "category value :)",
+      titleSrc: "title",
+      descSrc: "description ..............",
+      authorSrc: "zzzzz",
+      dateSrc: new Date()
     };
   },
   methods: {
     setJokeDescription(e) {
       const value = e.target.value;
       this.imgDescription = value;
+    },
+
+    setCatSource(e) {
+      const value = e.target.value;
+      this.catSrc = value;
+    },
+    setTitle(e) {
+      const value = e.target.value;
+      this.titleSrc = value;
+    },
+    setDesc(e) {
+      const value = e.target.value;
+      this.descSrc = value;
+    },
+    setAuthor(e) {
+      const value = e.target.value;
+      this.authorSrc = value;
+    },
+    setDate(e) {
+      const value = e.target.value;
+      this.dateSrc = value;
     }
   },
   computed: {
@@ -84,6 +155,12 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+div.joke {
+  margin: 15px;
+  border: 1px solid #ccc;
+  float: left;
+  width: 190px;
+}
 hr.hrTitle {
   height: 3px;
   color: red;
@@ -111,7 +188,7 @@ a {
   color: #42b983;
 }
 .button {
-  background-color: #4CAF50; /* Green */
+  background-color: #4caf50; /* Green */
   border: none;
   color: white;
   padding: 15px 32px;
@@ -120,6 +197,10 @@ a {
   display: inline-block;
   font-size: 16px;
 }
-.btnS {background-color:palegreen;} /* Blue */
-.btnH {background-color:aqua ;} /* Red */ 
+.btnS {
+  background-color: palegreen;
+} /* Blue */
+.btnH {
+  background-color: aqua;
+} /* Red */
 </style>
