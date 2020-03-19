@@ -154,7 +154,7 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
+<style scoped >
 div.joke {
   margin: 15px;
   border: 1px solid #ccc;
