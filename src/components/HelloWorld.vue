@@ -83,7 +83,7 @@
   </div>
 </template>
 
-<script>
+<script >
 export default {
   name: "HelloWorld",
   props: {
@@ -101,6 +101,60 @@ export default {
           date: new Date(),
           showDescription: false
         },
+           {
+          category: "Ivancho",
+          title: "Ivancho && Father",
+          description:
+            "Иванчо говори с баща си Татко,ти си голям късметлия!- Защо?- Няма нужда да ми купуваш нови учебници, оставам в същия клас!",
+          author: "Емануил",
+          date: new Date(),
+          showDescription: false
+        },
+           {
+          category: "Ivancho",
+          title: "Ivancho && Father",
+          description:
+            "Иванчо говори с баща си Татко,ти си голям късметлия!- Защо?- Няма нужда да ми купуваш нови учебници, оставам в същия клас!",
+          author: "Емануил",
+          date: new Date(),
+          showDescription: false
+        },
+           {
+          category: "Ivancho",
+          title: "Ivancho && Father",
+          description:
+            "Иванчо говори с баща си Татко,ти си голям късметлия!- Защо?- Няма нужда да ми купуваш нови учебници, оставам в същия клас!",
+          author: "Емануил",
+          date: new Date(),
+          showDescription: false
+        },
+           {
+          category: "Ivancho",
+          title: "Ivancho && Father",
+          description:
+            "Иванчо говори с баща си Татко,ти си голям късметлия!- Защо?- Няма нужда да ми купуваш нови учебници, оставам в същия клас!",
+          author: "Емануил",
+          date: new Date(),
+          showDescription: false
+        },
+           {
+          category: "Ivancho",
+          title: "Ivancho && Father",
+          description:
+            "Иванчо говори с баща си Татко,ти си голям късметлия!- Защо?- Няма нужда да ми купуваш нови учебници, оставам в същия клас!",
+          author: "Емануил",
+          date: new Date(),
+          showDescription: false
+        },
+           {
+          category: "Ivancho",
+          title: "Ivancho && Father",
+          description:
+            "Иванчо говори с баща си Татко,ти си голям късметлия!- Защо?- Няма нужда да ми купуваш нови учебници, оставам в същия клас!",
+          author: "Емануил",
+          date: new Date(),
+          showDescription: false
+        },
         {
           category: "Ivancho",
           title: "Ivancho && Father",
@@ -109,7 +163,61 @@ export default {
           author: "Емануил",
           date: new Date(),
           showDescription: false
-        }
+        },
+            {
+          category: "Ivancho",
+          title: "Ivancho && Father",
+          description:
+            "Иванчо говори с баща си Татко,ти си голям късметлия!- Защо?- Няма нужда да ми купуваш нови учебници, оставам в същия клас!",
+          author: "Емануил",
+          date: new Date(),
+          showDescription: false
+        },
+            {
+          category: "Ivancho",
+          title: "Ivancho && Father",
+          description:
+            "Иванчо говори с баща си Татко,ти си голям късметлия!- Защо?- Няма нужда да ми купуваш нови учебници, оставам в същия клас!",
+          author: "Емануил",
+          date: new Date(),
+          showDescription: false
+        },
+        //     {
+        //   category: "Ivancho",
+        //   title: "Ivancho && Father",
+        //   description:
+        //     "Иванчо говори с баща си Татко,ти си голям късметлия!- Защо?- Няма нужда да ми купуваш нови учебници, оставам в същия клас!",
+        //   author: "Емануил",
+        //   date: new Date(),
+        //   showDescription: false
+        // },
+        //     {
+        //   category: "Ivancho",
+        //   title: "Ivancho && Father",
+        //   description:
+        //     "Иванчо говори с баща си Татко,ти си голям късметлия!- Защо?- Няма нужда да ми купуваш нови учебници, оставам в същия клас!",
+        //   author: "Емануил",
+        //   date: new Date(),
+        //   showDescription: false
+        // },
+        //     {
+        //   category: "Ivancho",
+        //   title: "Ivancho && Father",
+        //   description:
+        //     "Иванчо говори с баща си Татко,ти си голям късметлия!- Защо?- Няма нужда да ми купуваш нови учебници, оставам в същия клас!",
+        //   author: "Емануил",
+        //   date: new Date(),
+        //   showDescription: false
+        // },
+        //     {
+        //   category: "Ivancho",
+        //   title: "Ivancho && Father",
+        //   description:
+        //     "Иванчо говори с баща си Татко,ти си голям късметлия!- Защо?- Няма нужда да ми купуваш нови учебници, оставам в същия клас!",
+        //   author: "Емануил",
+        //   date: new Date(),
+        //   showDescription: false
+        // }
       ],
       catSrc: "category value :)",
       titleSrc: "title",

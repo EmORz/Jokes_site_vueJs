@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "core-js": "^3.6.4",
+    "mdbvue": "^6.5.1",
     "moment": "^2.24.0",
     "vue": "^2.6.11",
     "vue-moment": "^4.1.0"
