@@ -3,15 +3,16 @@
     <app-header></app-header>
     <div class="main">
       <HelloWorld msg="Welcome to Your Vue.js App for Jokes :)" />
+      <digital-clock :blink="true" />
       <app-register></app-register>
       <app-login></app-login>
-
     </div>
     <app-footer></app-footer>
   </div>
 </template>
 
 <script>
+import DigitalClock from "vue-digital-clock";
 import HelloWorld from "./components/HelloWorld";
 import AppLogin from "./components/Login";
 import AppRegister from "./components/Register";
@@ -22,15 +23,16 @@ export default {
   name: "App",
   components: {
     HelloWorld,
-     AppHeader,
-     AppFooter,
-     AppLogin,
-     AppRegister
+    AppHeader,
+    AppFooter,
+    AppLogin,
+    AppRegister,
+    DigitalClock
   }
 };
 </script>
 
-<style >
+<style>
 @import url("https://fonts.googleapis.com/css?family=Lato&display=swap");
 body {
   font-family: "Lato", sans-serif;
@@ -52,38 +54,37 @@ body {
   font-family:Open Sans;
 } */
 
-#container{
-  padding-top:20px;
-  margin-top:20px;
-  width:100vw;
-  color:white;
-  background-color:#292354;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
+#container {
+  padding-top: 20px;
+  margin-top: 20px;
+  width: 100vw;
+  color: white;
+  background-color: lightskyblue;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
-#contacts{
-  display:flex;
-  justify-content:space-around;
-  align-items:center;
-  width:100%;
+#contacts {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
 }
-#contacts--contact{
-  text-align:right;
+#contacts--contact {
+  text-align: right;
 }
-#contacts--social{
-  width:20%;
-  display : flex;
-  justify-content : space-between;
+#contacts--social {
+  width: 20%;
+  display: flex;
+  justify-content: space-between;
 }
-#contacts--social div{
-  height:30px;
-  width:30px;
+#contacts--social div {
+  height: 30px;
+  width: 30px;
+}
 
-}
-
-  #mentions p {
-  font-size:0.5em;
+#mentions p {
+  font-size: 1em;
 }
 /** ************************************** **/
 
@@ -156,8 +157,8 @@ header .social-icons a {
   text-decoration: none;
   font-family: fontawesome;
   display: inline-block;
-  width: 35px;
-  height: 26px;
+  width: 30px;
+  height: 21px;
   padding-top: 9px;
   margin: 0 2px;
   transition: all 0.5s;
