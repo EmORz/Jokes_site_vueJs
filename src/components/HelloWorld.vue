@@ -92,6 +92,60 @@ export default {
   data: function() {
     return {
       jokes_bank: [
+         {
+          category: "Ivancho",
+          title: "Ivancho && Father",
+          description:
+            "Иванчо говори с баща си Татко,ти си голям късметлия!- Защо?- Няма нужда да ми купуваш нови учебници, оставам в същия клас!",
+          author: "Емануил",
+          date: new Date(),
+          showDescription: false
+        },
+         {
+          category: "Ivancho",
+          title: "Ivancho && Father",
+          description:
+            "Иванчо говори с баща си Татко,ти си голям късметлия!- Защо?- Няма нужда да ми купуваш нови учебници, оставам в същия клас!",
+          author: "Емануил",
+          date: new Date(),
+          showDescription: false
+        },
+         {
+          category: "Ivancho",
+          title: "Ivancho && Father",
+          description:
+            "Иванчо говори с баща си Татко,ти си голям късметлия!- Защо?- Няма нужда да ми купуваш нови учебници, оставам в същия клас!",
+          author: "Емануил",
+          date: new Date(),
+          showDescription: false
+        },
+         {
+          category: "Ivancho",
+          title: "Ivancho && Father",
+          description:
+            "Иванчо говори с баща си Татко,ти си голям късметлия!- Защо?- Няма нужда да ми купуваш нови учебници, оставам в същия клас!",
+          author: "Емануил",
+          date: new Date(),
+          showDescription: false
+        },
+         {
+          category: "Ivancho",
+          title: "Ivancho && Father",
+          description:
+            "Иванчо говори с баща си Татко,ти си голям късметлия!- Защо?- Няма нужда да ми купуваш нови учебници, оставам в същия клас!",
+          author: "Емануил",
+          date: new Date(),
+          showDescription: false
+        },
+         {
+          category: "Ivancho",
+          title: "Ivancho && Father",
+          description:
+            "Иванчо говори с баща си Татко,ти си голям късметлия!- Защо?- Няма нужда да ми купуваш нови учебници, оставам в същия клас!",
+          author: "Емануил",
+          date: new Date(),
+          showDescription: false
+        },
         {
           category: "Ivancho",
           title: "Ivancho && Father",

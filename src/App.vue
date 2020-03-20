@@ -3,6 +3,9 @@
     <app-header></app-header>
     <div class="main">
       <HelloWorld msg="Welcome to Your Vue.js App for Jokes :)" />
+      <app-register></app-register>
+      <app-login></app-login>
+
     </div>
     <app-footer></app-footer>
   </div>
@@ -10,6 +13,8 @@
 
 <script>
 import HelloWorld from "./components/HelloWorld";
+import AppLogin from "./components/Login";
+import AppRegister from "./components/Register";
 import AppHeader from "./components/core/Header";
 import AppFooter from "./components/core/Footer";
 
@@ -18,7 +23,9 @@ export default {
   components: {
     HelloWorld,
      AppHeader,
-     AppFooter
+     AppFooter,
+     AppLogin,
+     AppRegister
   }
 };
 </script>
@@ -154,5 +161,60 @@ header .social-icons a {
   padding-top: 9px;
   margin: 0 2px;
   transition: all 0.5s;
+}
+
+.main .content-info {
+  width: 80%;
+  padding: 1%;
+  font-size: 18px;
+  display: block;
+}
+
+.main .content-info .user-form input {
+  padding: 1%;
+  width: 25%;
+  border: none;
+  border-bottom: 1px solid black;
+  font-size: 16px;
+  font-family: inherit;
+}
+
+.main .content-info .user-form input:focus {
+  background: rgb(255, 248, 198);
+}
+
+.main .content-info .user-form .form-group {
+  margin-bottom: 1%;
+}
+
+.main .content-info .user-form .form-group img {
+  vertical-align: bottom;
+}
+
+.main .content-info .user-form button {
+  padding: 1%;
+  background: #44a9f8;
+  color: white;
+  border: none;
+  width: 10%;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.main .content-info .user-links a {
+  color: black;
+  text-decoration: none;
+  font-weight: normal;
+  margin: 2%;
+}
+
+.main .content-info .user-links a:hover {
+  color: #44a9f8;
+  text-decoration: underline;
+}
+
+.main .content-info .user-links .active-route {
+  color: #44a9f8;
+  text-decoration: underline;
 }
 </style>
