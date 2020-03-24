@@ -100,7 +100,7 @@ export default {
       if (this.$v.$invalid) {
         return;
       }
-      console.log("Form was submitted!");
+      console.log("Register Form was submitted!");
     }
   },
   data() {
