@@ -19,6 +19,7 @@
             name="username"
             placeholder="Username"
             v-model="username"
+            @blur="$v.username.$touch"
           />
           <template v-if="$v.username.$error">
             <div v-if="!$v.username.required">Username is requerd!</div>
@@ -41,6 +42,7 @@
             name="password"
             placeholder="Password"
             v-model="password"
+            @blur="$v.password.$touch"
           />
           <template v-if="$v.password.$error">
             <div v-if="!$v.password.required">Password is requerd!</div>
@@ -63,6 +65,7 @@
             name="rePassword"
             placeholder="Repeat password"
             v-model="rePassword"
+            @blur="$v.rePassword.$touch"
           />
           <template v-if="$v.rePassword.$error">
             <div v-if="!$v.rePassword.sameAs">
@@ -97,7 +100,7 @@ export default {
     submitHandler() {
       this.$v.$touch();
 
-      if (this.$v.$invalid) {
+      if (this.$v.$invalid) {        
         return;
       }
       console.log("Register Form was submitted!");

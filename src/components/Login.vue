@@ -19,6 +19,8 @@
             id="username1"
             name="username"
             placeholder="Username"
+            @blur="$v.username1.$touch"
+
           />
           <template v-if="$v.username1.$error">
             <div v-if="!$v.username1.required">Username is requerd!</div>
@@ -37,6 +39,8 @@
             id="password1"
             name="password"
             placeholder="Password"
+            @blur="$v.password1.$touch"
+
           />
           <template v-if="$v.password1.$error">
             <div v-if="!$v.password1.required">Password is requerd!</div>
