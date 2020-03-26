@@ -1,11 +1,17 @@
 <template>
   <div id="app">
-    <app-header></app-header>
+    <app-header> </app-header>
+
     <div class="main">
-      <HelloWorld msg="Welcome to Your Vue.js App for Jokes :)" />
+      <nav>
+        <router-link to="/home">Home</router-link>
+        <router-link to="/login">Login</router-link>
+        <router-link to="/register">Register</router-link>
+        <router-link to="/createjoke">createjoke</router-link>
+      </nav>
+      <router-view></router-view>
+      <app-home msg="Welcome to Your Vue.js App for Jokes :)" />
       <digital-clock :blink="true" />
-      <app-register></app-register>
-      <app-login></app-login>
     </div>
     <app-footer></app-footer>
   </div>
@@ -13,20 +19,17 @@
 
 <script>
 import DigitalClock from "vue-digital-clock";
-import HelloWorld from "./components/HelloWorld";
-import AppLogin from "./components/Login";
-import AppRegister from "./components/Register";
+import AppHome from "./components/Home";
+
 import AppHeader from "./components/core/Header";
 import AppFooter from "./components/core/Footer";
 
 export default {
   name: "App",
   components: {
-    HelloWorld,
+    AppHome,
     AppHeader,
     AppFooter,
-    AppLogin,
-    AppRegister,
     DigitalClock
   }
 };

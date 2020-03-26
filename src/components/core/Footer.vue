@@ -48,7 +48,7 @@
       </div>
     </div>
     <div id="mentions">
-      <p>2020 Simple site for funny!</p>
+      <p>{{ new Date().getFullYear() }} Simple site for funny!</p>
     </div>
   </div>
   <!-- Footer -->
