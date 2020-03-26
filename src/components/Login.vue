@@ -82,6 +82,8 @@ export default {
       if (this.$v.$invalid) {
         return;
       }
+      this.$router.push('home');
+
       console.log("Login Form was submitted!");
     }
   }
