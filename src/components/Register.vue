@@ -5,8 +5,8 @@
         <a href="login.html">Login</a> |
         <a href="register.html" class="active-route">Register</a>
       </h2>
-
-      <form @submit.prevent="submitHandler" class="user-form">
+      <div v-if="success">Registretion successfull!</div>
+      <form v-else @submit.prevent="submitHandler" class="user-form">
         <div class="form-group">
           <label for="username">
             <img
@@ -100,9 +100,10 @@ export default {
     submitHandler() {
       this.$v.$touch();
 
-      if (this.$v.$invalid) {        
+      if (this.$v.$invalid) {
         return;
       }
+      this.success = true;
       console.log("Register Form was submitted!");
     }
   },
@@ -110,7 +111,8 @@ export default {
     return {
       username: "",
       password: "",
-      rePassword: ""
+      rePassword: "",
+      success: false
     };
   },
   validations: {
