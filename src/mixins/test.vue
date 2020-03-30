@@ -7,8 +7,9 @@ export default {
   },
   data() {
     return {
-      test2: 'Test2',
-      user: null
+      test2: "Test2",
+      user: null,
+      success: false
     };
   },
   computed: {
@@ -20,9 +21,18 @@ export default {
     login(email, password) {
       setTimeout(() => {
         console.log(email, password);
-        this.user = { name: 'Pesho&zas&Ivan' };
-          this.$router.push("home");
-          console.log("Login Form was submitted!");
+        this.user = { name: "Pesho&zas&Ivan" };
+        this.$router.push("home");
+        console.log("Login Form was submitted!");
+      }, 3000);
+    },
+    register(username, email, password) {
+      setTimeout(() => {
+        console.log(email, password);
+        this.user = { name: "Pesho&zas&Ivan" };
+        // this.$router.push("home");
+        this.success = true;
+        console.log("Register Form was submitted!");
       }, 3000);
     },
     logout() {
@@ -31,5 +41,5 @@ export default {
       }, 3000);
     }
   }
-}
+};
 </script>

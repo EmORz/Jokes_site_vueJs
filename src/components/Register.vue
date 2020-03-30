@@ -28,6 +28,22 @@
             </div>
           </template>
         </div>
+        <div class="form-group">
+          <label for="email">
+            <img src="https://img.icons8.com/metro/26/000000/email.png" />
+          </label>
+          <input
+            id="email"
+            type="text"
+            name="email"
+            placeholder="Email ..."
+            v-model="email"
+            @blur="$v.email.$touch"
+          />
+          <template v-if="$v.email.$error">
+            <div v-if="!$v.email.required">Email is requerd!</div>
+          </template>
+        </div>
 
         <div class="form-group">
           <label for="password">
@@ -74,7 +90,9 @@
           </template>
         </div>
 
-        <button>Register</button>
+        <!-- <button>Register</button> -->
+        <button v-if="!user" @click="register">Register</button>
+        <button v-if="user" @click="logout">Logout</button>
       </form>
     </template>
   </app-content>
@@ -90,22 +108,22 @@ function sameAs(field) {
     return this[field] === value;
   };
 }
+import testMixin from "../mixins/test";
 
 export default {
-  mixins: [validationMixin],
+  mixins: [validationMixin, testMixin],
   components: {
     AppContent
   },
   methods: {
-    submitHandler() {
-      this.$v.$touch();
-
-      if (this.$v.$invalid) {
-        return;
-      }
-      this.success = true;
-      console.log("Register Form was submitted!");
-    }
+    // submitHandler() {
+    //   this.$v.$touch();
+    //   if (this.$v.$invalid) {
+    //     return;
+    //   }
+    //   this.success = true;
+    //   console.log("Register Form was submitted!");
+    // }
   },
   data() {
     return {
@@ -126,6 +144,9 @@ export default {
     },
     rePassword: {
       sameAs: sameAs("password")
+    },
+    email: {
+      required
     }
   }
 };
