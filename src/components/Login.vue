@@ -6,6 +6,7 @@
         <a href="register.html">Register</a>
       </h2>
 
+<p>{{user}}</p>
       <form @submit.prevent="loginHandler" class="user-form">
         <div class="form-group">
           <label for="username1">
@@ -20,7 +21,6 @@
             name="username"
             placeholder="Username"
             @blur="$v.username1.$touch"
-
           />
           <template v-if="$v.username1.$error">
             <div v-if="!$v.username1.required">Username is requerd!</div>
@@ -40,14 +40,15 @@
             name="password"
             placeholder="Password"
             @blur="$v.password1.$touch"
-
           />
           <template v-if="$v.password1.$error">
             <div v-if="!$v.password1.required">Password is requerd!</div>
           </template>
         </div>
 
-        <button>Login</button>
+        <!-- <button>Login</button> -->
+        <button v-if="!user" @click="login">Login</button>
+        <button v-if="user" @click="logout">Logout</button>
       </form>
     </template>
   </app-content>
@@ -57,11 +58,14 @@
 import AppContent from "./shared/Content";
 import { validationMixin } from "vuelidate";
 import { required } from "vuelidate/lib/validators";
+import testMixin from "../mixins/test";
+
 export default {
-  mixins: [validationMixin],
+  mixins: [validationMixin, testMixin],
   components: {
     AppContent
   },
+
   validations: {
     username1: {
       required
@@ -77,15 +81,14 @@ export default {
     };
   },
   methods: {
-    loginHandler() {
-      this.$v.$touch();
-      if (this.$v.$invalid) {
-        return;
-      }
-      this.$router.push('home');
-
-      console.log("Login Form was submitted!");
-    }
+    // loginHandler() {
+    //   this.$v.$touch();
+    //   if (this.$v.$invalid) {
+    //     return;
+    //   }
+    //   this.$router.push("home");
+    //   console.log("Login Form was submitted!");
+    // }
   }
 };
 </script>

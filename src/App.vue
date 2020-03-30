@@ -21,6 +21,8 @@
 import DigitalClock from "vue-digital-clock";
 import AppHome from "./components/Home";
 
+
+
 import AppHeader from "./components/core/Header";
 import AppFooter from "./components/core/Footer";
 
@@ -30,7 +32,7 @@ export default {
     AppHome,
     AppHeader,
     AppFooter,
-    DigitalClock
+    DigitalClock,
   }
 };
 </script>
