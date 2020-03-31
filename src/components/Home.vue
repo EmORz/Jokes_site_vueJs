@@ -1,5 +1,6 @@
 <template>
   <div class="container">
+     <li v-for="user in users" :key="user.id">{{user.username}}</li>
     <h1>{{ msg }}</h1>
     <p>
       бележки: Трябва още: - регистрация - логин - логоут - изглед за логнати -
@@ -38,6 +39,7 @@
 
 <script>
 import testMixin from "../mixins/test";
+import axios from "axios";
 
 export default {
   name: "Home",
@@ -197,14 +199,29 @@ export default {
       titleSrc: "title",
       descSrc: "description ..............",
       authorSrc: "zzzzz",
-      dateSrc: new Date()
+      dateSrc: new Date(),
+      users: null,
+      isLoading: false
     };
   },
-  methods: {},
+  methods: {
+    loadUsers() {
+      this.isLoading = true;
+      axios.get("users").then(res => {
+        if (res.status === 200) {
+          this.users = res.data;
+        }
+        this.isLoading = false;
+      });
+    }
+  },
   computed: {
     count() {
       return this.jokes_bank.length;
     }
+  },
+  created() {
+    this.loadUsers();
   }
 };
 </script>
