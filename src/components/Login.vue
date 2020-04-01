@@ -60,6 +60,8 @@ import { validationMixin } from "vuelidate";
 import { required } from "vuelidate/lib/validators";
 import testMixin from "../mixins/test";
 
+
+
 export default {
   mixins: [validationMixin, testMixin],
   components: {

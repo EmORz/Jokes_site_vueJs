@@ -1,6 +1,11 @@
 <template>
   <div class="container">
-     <li v-for="user in users" :key="user.id">{{user.username}}</li>
+    <li v-for="user in users" :key="user.id">
+  
+      <span>{{ user.username }}</span>
+      <router-link :to="user | userEditLink">Edit</router-link>
+    </li>
+    {{$route.params.id}}
     <h1>{{ msg }}</h1>
     <p>
       бележки: Трябва още: - регистрация - логин - логоут - изглед за логнати -
@@ -222,6 +227,11 @@ export default {
   },
   created() {
     this.loadUsers();
+  },
+  filters:{
+    userEditLink(user){
+      return `/edit/${user.id}`
+    }
   }
 };
 </script>

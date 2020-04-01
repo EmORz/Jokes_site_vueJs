@@ -1,4 +1,6 @@
 <script>
+import store from "../store";
+
 export default {
   props: {
     text: {
@@ -21,8 +23,11 @@ export default {
     login(email, password) {
       setTimeout(() => {
         console.log(email, password);
+        store.login(() => {
+          this.$router.push("/protected");
+        });
         this.user = { name: "Pesho&zas&Ivan" };
-        this.$router.push("home");
+        //this.$router.push("home");
         console.log("Login Form was submitted!");
       }, 3000);
     },
