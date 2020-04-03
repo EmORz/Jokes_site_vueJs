@@ -1,13 +1,8 @@
 <template>
   <app-content>
     <template v-slot:info>
-      <h2 class="user-links">
-        <a href="login.html">Login</a> |
-        <a href="register.html" class="active-route">Register</a>
-      </h2>
-      <div v-if="success">Registretion successfull!</div>
-      <form v-else @submit.prevent="submitHandler" class="user-form">
-        <div class="form-group">
+      <form @submit.prevent="onSignUp" class="user-form">
+        <!-- <div class="form-group">
           <label for="username">
             <img
               src="https://img.icons8.com/material-sharp/42/000000/user.png"
@@ -27,7 +22,7 @@
               Username should be more than 3 symbols!
             </div>
           </template>
-        </div>
+        </div> -->
         <div class="form-group">
           <label for="email">
             <img src="https://img.icons8.com/metro/26/000000/email.png" />
@@ -90,9 +85,7 @@
           </template>
         </div>
 
-        <!-- <button>Register</button> -->
-        <button v-if="!user" @click="register">Register</button>
-        <button v-if="user" @click="logout">Logout</button>
+        <button>Register</button>
       </form>
     </template>
   </app-content>
@@ -109,30 +102,48 @@ function sameAs(field) {
   };
 }
 import testMixin from "../mixins/test";
+import authAxios from "@/axios-auth";
 
 export default {
-  mixins: [validationMixin, testMixin],
-  components: {
-    AppContent
-  },
-  methods: {
-    // submitHandler() {
-    //   this.$v.$touch();
-    //   if (this.$v.$invalid) {
-    //     return;
-    //   }
-    //   this.success = true;
-    //   console.log("Register Form was submitted!");
-    // }
-  },
   data() {
     return {
-      username: "",
+      
+      email: "",
       password: "",
       rePassword: "",
       success: false
     };
   },
+  mixins: [validationMixin, testMixin],
+  components: {
+    AppContent
+  },
+  methods: {
+    onSignUp() {
+      const payload = {
+        email: this.email,
+        password: this.password,
+        returnSecureToken: true
+      };
+
+      // Project Settings -> Web API key
+      authAxios
+        .post("/accounts:signUp", payload)
+        .then(res => {
+          const { idToken, localId } = res.data;
+
+          localStorage.setItem("token", idToken);
+          localStorage.setItem("userId", localId);
+
+          this.$router.push("/");
+        })
+        .catch(err => {
+          console.error(err);
+        });
+    }
+
+  },
+
   validations: {
     username: {
       required,

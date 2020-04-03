@@ -1,11 +1,10 @@
 <template>
   <div id="app">
-    <app-header> </app-header>
+    <app-header  @onAuth="isAuth = $event" :isAuth="isAuth"> </app-header>
 
     <div class="main">
-    
-      <router-view></router-view>
-      <app-home msg="Welcome to Your Vue.js App for Jokes :)" />
+      <router-view @onAuth="isAuth = $event" :isAuth="isAuth"></router-view>
+
       <digital-clock :blink="true" />
     </div>
     <app-footer></app-footer>
@@ -14,9 +13,7 @@
 
 <script>
 import DigitalClock from "vue-digital-clock";
-import AppHome from "./components/Home";
-
-
+//import AppHome from "./components/Home";
 
 import AppHeader from "./components/core/Header";
 import AppFooter from "./components/core/Footer";
@@ -24,10 +21,14 @@ import AppFooter from "./components/core/Footer";
 export default {
   name: "App",
   components: {
-    AppHome,
     AppHeader,
     AppFooter,
-    DigitalClock,
+    DigitalClock
+  },
+  data: function() {
+    return {
+      isAuth: localStorage.getItem("token") !== null
+    };
   }
 };
 </script>

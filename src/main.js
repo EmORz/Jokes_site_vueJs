@@ -1,8 +1,7 @@
 import Vue from "vue";
 import App from "./App.vue";
 import moment from 'moment'
-import VueRouter from 'vue-router';
-import routes from './routes' // path to router
+import router from './router' // path to router
 import axios from 'axios';
 
 const API_URL = 'https://jsonplaceholder.typicode.com';
@@ -20,13 +19,6 @@ Vue.filter("formatDate", function(value) {
   if (value) {
     return moment(String(value)).format("MM/DD/YYYY hh:mm");
   }
-});
-
-Vue.use(VueRouter)
-
-const router = new VueRouter({
-  mode: 'history',
-  routes
 });
 
 new Vue({

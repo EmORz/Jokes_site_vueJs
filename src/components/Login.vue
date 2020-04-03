@@ -1,54 +1,46 @@
 <template>
   <app-content>
     <template v-slot:info>
-      <h2 class="user-links">
-        <a class="active-route" href="login.html">Login</a> |
-        <a href="register.html">Register</a>
-      </h2>
 
-<p>{{user}}</p>
-      <form @submit.prevent="loginHandler" class="user-form">
+      <form @submit.prevent="onLogin" class="user-form">
         <div class="form-group">
-          <label for="username1">
-            <img
-              src="https://img.icons8.com/material-sharp/42/000000/user.png"
-            />
+          <label for="email">
+            <img src="https://img.icons8.com/metro/26/000000/email.png" />
           </label>
           <input
-            v-model="username1"
+            id="email"
             type="text"
-            id="username1"
-            name="username"
-            placeholder="Username"
-            @blur="$v.username1.$touch"
+            name="email"
+            placeholder="Email ..."
+            v-model="email"
+            @blur="$v.email.$touch"
           />
-          <template v-if="$v.username1.$error">
-            <div v-if="!$v.username1.required">Username is requerd!</div>
+          <template v-if="$v.email.$error">
+            <div v-if="!$v.email.required">Email is requerd!</div>
           </template>
         </div>
 
         <div class="form-group">
-          <label for="password1">
+          <label for="password">
             <img
               src="https://img.icons8.com/material/42/000000/password--v1.png"
             />
           </label>
           <input
-            v-model="password1"
+            v-model="password"
             type="password"
-            id="password1"
+            id="password"
             name="password"
             placeholder="Password"
-            @blur="$v.password1.$touch"
+            @blur="$v.password.$touch"
           />
-          <template v-if="$v.password1.$error">
-            <div v-if="!$v.password1.required">Password is requerd!</div>
+          <template v-if="$v.password.$error">
+            <div v-if="!$v.password.required">Password is requerd!</div>
           </template>
         </div>
 
         <!-- <button>Login</button> -->
-        <button v-if="!user" @click="login">Login</button>
-        <button v-if="user" @click="logout">Logout</button>
+        <button>Login</button>
       </form>
     </template>
   </app-content>
@@ -60,7 +52,7 @@ import { validationMixin } from "vuelidate";
 import { required } from "vuelidate/lib/validators";
 import testMixin from "../mixins/test";
 
-
+import authAxios from "@/axios-auth";
 
 export default {
   mixins: [validationMixin, testMixin],
@@ -69,28 +61,42 @@ export default {
   },
 
   validations: {
-    username1: {
+    email: {
       required
     },
-    password1: {
+    password: {
       required
     }
   },
   data() {
     return {
-      username1: "",
-      password1: ""
+      email: "",
+      password: ""
     };
   },
   methods: {
-    // loginHandler() {
-    //   this.$v.$touch();
-    //   if (this.$v.$invalid) {
-    //     return;
-    //   }
-    //   this.$router.push("home");
-    //   console.log("Login Form was submitted!");
-    // }
+    onLogin() {
+      const payload = {
+        email: this.email,
+        password: this.password,
+        returnSecureToken: true
+      };
+
+      // Project Settings -> Web API key
+      authAxios
+        .post("/accounts:signInWithPassword", payload)
+        .then(res => {
+          const { idToken, localId } = res.data;
+
+          localStorage.setItem("token", idToken);
+          localStorage.setItem("userId", localId);
+
+          this.$router.push("/");
+        })
+        .catch(err => {
+          console.error(err);
+        });
+    }
   }
 };
 </script>

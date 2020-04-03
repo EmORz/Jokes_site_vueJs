@@ -1,57 +1,35 @@
 <template>
   <div class="container">
-    <li v-for="user in users" :key="user.id">
-  
-      <span>{{ user.username }}</span>
-      <router-link :to="user | userEditLink">Edit</router-link>
-    </li>
-    {{$route.params.id}}
-    <h1>{{ msg }}</h1>
-    <p>
-      бележки: Трябва още: - регистрация - логин - логоут - изглед за логнати -
-      не логнати - връзка с база данни - за нас - контакти - логиката за
-      добавяне на вицове - оформление; Ние разполагаме с богата колекция от
-      {{ count }} виц/ове, които ще ви харесат, гарантирано ;) <br />Разполагате
-      и с възможност да се регистрирате и да създадете собствен виц.
-    </p>
-    <hr class="hrTitle" size="30" />
-    <div v-for="(j, i) in jokes_bank" class="joke" :key="i">
-      <div>
-        <h2>{{ j.title }}</h2>
-        <h5>Категория: {{ j.category }}</h5>
-      </div>
-      <div class="desc">
-        <template v-if="j.showDescription">
-          <p>
-            {{ j.description }}
-          </p>
-          <p><b>Дата:</b>{{ j.date | formatDate }}</p>
-          <p><b>Автор:</b>{{ j.author }}</p>
-          <button @click="j.showDescription = false" class="show-desc btnH">
-            Show Less
-          </button>
-        </template>
-        <template v-else>
-          <button @click="j.showDescription = true" class="show-desc btnS">
-            Show more
-          </button>
-        </template>
-        <hr class="hrJokes" size="3" />
-      </div>
+    <div v-if="isAuth">
+      Hello to the Page (authenticated)
+      <p v-for="p in posts" :key="p.postId">
+        {{ p.name }}
+      </p>
+    </div>
+    <div v-else>
+      Hello to the Page (not authenticated)
     </div>
   </div>
 </template>
 
 <script>
 import testMixin from "../mixins/test";
+import postsMixin from "@/mixins/posts-mixin";
+
 import axios from "axios";
 
 export default {
   name: "Home",
   props: {
-    msg: String
+    isAuth: Boolean
   },
-  mixins: [testMixin],
+  mixins: [testMixin, postsMixin],
+  beforeCreate() {
+    this.$emit("onAuth", localStorage.getItem("token") !== null);
+  },
+  created() {
+    this.getAllPosts();
+  },
   data: function() {
     return {
       jokes_bank: [
@@ -225,12 +203,9 @@ export default {
       return this.jokes_bank.length;
     }
   },
-  created() {
-    this.loadUsers();
-  },
-  filters:{
-    userEditLink(user){
-      return `/edit/${user.id}`
+  filters: {
+    userEditLink(user) {
+      return `/edit/${user.id}`;
     }
   }
 };
