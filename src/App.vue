@@ -3,12 +3,7 @@
     <app-header> </app-header>
 
     <div class="main">
-      <nav>
-        <router-link to="/home">Home</router-link>
-        <router-link to="/login">Login</router-link>
-        <router-link to="/register">Register</router-link>
-        <router-link to="/createjoke">createjoke</router-link>
-      </nav>
+    
       <router-view></router-view>
       <app-home msg="Welcome to Your Vue.js App for Jokes :)" />
       <digital-clock :blink="true" />
