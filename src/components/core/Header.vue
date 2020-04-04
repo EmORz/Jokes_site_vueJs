@@ -18,6 +18,9 @@
           <li v-if="isAuth">
             <a @click="onLogout" class="logout">Logout</a>
           </li>
+           <li>
+            <router-link to="/about">About</router-link>
+          </li>
         </ul>
       </nav>
 

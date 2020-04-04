@@ -1,9 +1,8 @@
-import Vue from 'vue';
-import VueRouter from 'vue-router';
+import Vue from "vue";
+import VueRouter from "vue-router";
 
 import Login from "./components/Login.vue";
 import Home from "./components/Home.vue";
-import Test from "./components/Test.vue";
 import Register from "./components/Register.vue";
 import Createjoke from "./components/CreateJoke.vue";
 import Jokesites from "./components/JokeSites.vue";
@@ -23,24 +22,33 @@ function anonymousGuard(to, from, next) {
 }
 
 function authGuard(to, from, next) {
-    if (localStorage.getItem('token') === null) {
-        next('/login');
-    } else {
-        next();
-    }
+  if (localStorage.getItem("token") === null) {
+    next("/login");
+  } else {
+    next();
+  }
 }
+// function homeGuard(to, from, next) {
+//   if (
+//     localStorage.getItem("token") === null ||
+//     localStorage.getItem("token") !== null
+//   ) {
+//     next("/home");
+//   }
+// }
 
 const routes = [
   {
     path: "/",
     component: Home
   },
+  { path: "/home", component: Home },
+  { path: "/about", component: About },
   { path: "/login", component: Login, beforeEnter: anonymousGuard },
   { path: "/register", component: Register, beforeEnter: anonymousGuard },
   { path: "/createjoke", component: Createjoke, beforeEnter: authGuard },
   { path: "/Jokesites", component: Jokesites },
-  { path: "/home", component: Home },
-  { path: "/test", component: Test },
+  
   {
     path: "/edit/:id",
     component: About
@@ -61,6 +69,6 @@ const routes = [
 ];
 
 export default new VueRouter({
-  mode: 'history',
+  mode: "history",
   routes
 });

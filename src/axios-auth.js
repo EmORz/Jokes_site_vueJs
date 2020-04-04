@@ -7,7 +7,6 @@ const instance = axios.create({
 
 instance.interceptors.request.use((config) => {
     config.url = `${config.url}?key=AIzaSyDEQ1hEzmGC-6ajOaFx3EPJsF4MVFPJQTw`
-
     return config;
 });
 

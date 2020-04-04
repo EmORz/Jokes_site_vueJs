@@ -1,17 +1,9 @@
 <template>
   <div class="container">
-    <h1>{{ msg }}</h1>
-    <p>
-      бележки: Трябва още: - регистрация - логин - логоут - изглед за логнати -
-      не логнати - връзка с база данни - за нас - контакти - логиката за
-      добавяне на вицове - оформление; Ние разполагаме с богата колекция от
-      {{ count }} виц/ове, които ще ви харесат, гарантирано ;) <br />Разполагате
-      и с възможност да се регистрирате и да създадете собствен виц.
-    </p>
     <hr class="hrTitle" size="30" />
     <h2>Форма за съзадаване на виц</h2>
     <br />
-    <form>
+    <form @submit.prevent="createJoke" class="user-form">
       <label for="category">Category</label><br />
       <input
         @input="setCatSource"
@@ -56,27 +48,55 @@
       <input type="submit" value="Submit" />
     </form>
     <hr class="hrTitle" size="30" />
- 
   </div>
 </template>
 
-<script >
+<script>
+import DBAxios from "@/axios-database";
+import postsMixin from "@/mixins/posts-mixin";
 export default {
   name: "HelloWorld",
   props: {
     msg: String
   },
+  mixins: [postsMixin],
+  created() {
+    this.getAllPosts();
+  },
   data: function() {
     return {
-   
       catSrc: "category value :)",
       titleSrc: "title",
       descSrc: "description ..............",
       authorSrc: "zzzzz",
-      dateSrc: new Date()
+      dateSrc: new Date(),
+      showDescription: false
     };
   },
   methods: {
+    createJoke() {
+      const payload = {
+        category: this.catSrc,
+        title: this.titleSrc,
+        description: this.descSrc,
+        author: this.authorSrc,
+        date: this.dateSrc,
+        showDescription: this.showDescription,
+        returnSecureToken: true
+      };
+      DBAxios.post(`posts.json`, payload)
+        .then(res => {
+          const { idToken, localId } = res.data;
+
+          localStorage.setItem("token", idToken);
+          localStorage.setItem("userId", localId);
+
+          this.$router.push("/home");
+        })
+        .catch(err => {
+          console.error(err);
+        });
+    },
     setJokeDescription(e) {
       const value = e.target.value;
       this.imgDescription = value;
@@ -103,14 +123,12 @@ export default {
       this.dateSrc = value;
     }
   },
-  computed: {
-   
-  }
+  computed: {}
 };
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped >
+<style scoped>
 div.joke {
   margin: 15px;
   border: 1px solid #ccc;
