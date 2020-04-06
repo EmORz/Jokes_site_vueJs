@@ -30,9 +30,10 @@
       ></textarea
       ><br />
       <label for="author">Author</label><br />
+
       <input
         @input="setAuthor"
-        :value="authorSrc"
+        :value="userEmail"
         type="text"
         id="author"
         placeholder="Your author of joke .."
@@ -57,20 +58,25 @@ import postsMixin from "@/mixins/posts-mixin";
 export default {
   name: "HelloWorld",
   props: {
-    msg: String
+    msg: String,
+  },
+  mounted() {
+    if (localStorage.getItem("email"))
+      this.userEmail = localStorage.getItem("email");
   },
   mixins: [postsMixin],
   created() {
     this.getAllPosts();
   },
-  data: function() {
+  data: function () {
     return {
       catSrc: "category value :)",
       titleSrc: "title",
       descSrc: "description ..............",
-      authorSrc: "zzzzz",
+      authorSrc: this.userEmail,
       dateSrc: new Date(),
-      showDescription: false
+      showDescription: false,
+      userEmail: "",
     };
   },
   methods: {
@@ -82,10 +88,10 @@ export default {
         author: this.authorSrc,
         date: this.dateSrc,
         showDescription: this.showDescription,
-        returnSecureToken: true
+        returnSecureToken: true,
       };
       DBAxios.post(`posts.json`, payload)
-        .then(res => {
+        .then((res) => {
           const { idToken, localId } = res.data;
 
           localStorage.setItem("token", idToken);
@@ -93,7 +99,7 @@ export default {
 
           this.$router.push("/home");
         })
-        .catch(err => {
+        .catch((err) => {
           console.error(err);
         });
     },
@@ -121,9 +127,9 @@ export default {
     setDate(e) {
       const value = e.target.value;
       this.dateSrc = value;
-    }
+    },
   },
-  computed: {}
+  computed: {},
 };
 </script>
 
