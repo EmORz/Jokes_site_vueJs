@@ -1,6 +1,8 @@
 <template>
   <div class="container">
     <div>
+      <h1 v-if="userEmail">Wellcome {{userEmail}}!</h1>
+      <h1 v-else>Wellcome!</h1>
       <hr class="hrTitle" size="30" />
       <div v-for="(j, i) in posts" class="joke" :key="i">
         <div>
@@ -27,10 +29,7 @@
         </div>
       </div>
     </div>
-   
   </div>
-
- 
 </template>
 
 <script>
@@ -41,8 +40,15 @@ import axios from "axios";
 
 export default {
   name: "Home",
+  mounted() {
+    console.log("EMAIL!");
+    if (localStorage.getItem("email"))
+      this.userEmail = localStorage.getItem("email");
+      
+     
+  },
   props: {
-    isAuth: Boolean
+    isAuth: Boolean,
   },
   mixins: [testMixin, postsMixin],
   beforeCreate() {
@@ -51,39 +57,39 @@ export default {
   created() {
     this.getAllPosts();
   },
-  data: function() {
+  data: function () {
     return {
-    
       catSrc: "category of joke :)",
       titleSrc: "title of joke",
       descSrc: "description ..............",
       authorSrc: "enter author name ...........",
       dateSrc: new Date(),
       users: null,
-      isLoading: false
+      isLoading: false,
+      userEmail: ""
     };
   },
   methods: {
     loadUsers() {
       this.isLoading = true;
-      axios.get("users").then(res => {
+      axios.get("users").then((res) => {
         if (res.status === 200) {
           this.users = res.data;
         }
         this.isLoading = false;
       });
-    }
+    },
   },
   computed: {
     count() {
       return this.jokes_bank.length;
-    }
+    },
   },
   filters: {
     userEditLink(user) {
       return `/edit/${user.id}`;
-    }
-  }
+    },
+  },
 };
 </script>
 

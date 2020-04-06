@@ -86,16 +86,17 @@ export default {
       authAxios
         .post("/accounts:signInWithPassword", payload)
         .then(res => {
-          const { idToken, localId } = res.data;
+          const { idToken, localId, email } = res.data;
 
           localStorage.setItem("token", idToken);
           localStorage.setItem("userId", localId);
+          localStorage.setItem("email", email)
 
           this.$router.push("/");
         })
         .catch(err => {
+          console.log(err)
           this.$router.push("/error")
-          console.error("Password or Username is not correct!"+err);
         });
     }
   }

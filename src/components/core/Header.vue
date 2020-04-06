@@ -46,6 +46,7 @@ export default {
     onLogout() {
       localStorage.removeItem("token");
       localStorage.removeItem("userId");
+      localStorage.clear();
 
       this.$emit("onAuth", false);
     }
