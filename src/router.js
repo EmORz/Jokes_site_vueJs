@@ -9,6 +9,7 @@ import Jokesites from "./components/JokeSites.vue";
 import NotFound from "./components/NotFound.vue";
 import About from "./components/About.vue";
 import Protected from "./components/Protected.vue";
+import Error from "./components/Error.vue";
 
 import store from "./store";
 
@@ -47,7 +48,8 @@ const routes = [
   { path: "/login", component: Login, beforeEnter: anonymousGuard },
   { path: "/register", component: Register, beforeEnter: anonymousGuard },
   { path: "/createjoke", component: Createjoke, beforeEnter: authGuard },
-  { path: "/Jokesites", component: Jokesites },
+  { path: "/Jokesites", component: Jokesites }, 
+   { path: "/Error", component: Error },
   
   {
     path: "/edit/:id",

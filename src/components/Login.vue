@@ -94,7 +94,8 @@ export default {
           this.$router.push("/");
         })
         .catch(err => {
-          console.error(err);
+          this.$router.push("/error")
+          console.error("Password or Username is not correct!"+err);
         });
     }
   }
