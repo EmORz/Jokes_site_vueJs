@@ -37,16 +37,18 @@
         type="text"
         id="author"
         placeholder="Your author of joke .."
+        readonly
       /><br />
-      <label for="date">Author</label><br />
+      <label for="date">Date</label><br />
       <input
         @input="setDate"
         :value="dateSrc"
         type="text"
         id="date"
         placeholder="Your date of joke .."
+        readonly
       /><br />
-      <input type="submit" value="Submit" />
+      <button type="submit" class="btn">Send</button>
     </form>
     <hr class="hrTitle" size="30" />
   </div>
@@ -85,7 +87,7 @@ export default {
         category: this.catSrc,
         title: this.titleSrc,
         description: this.descSrc,
-        author: this.authorSrc,
+        author: this.userEmail,
         date: this.dateSrc,
         showDescription: this.showDescription,
         returnSecureToken: true,
@@ -121,7 +123,7 @@ export default {
       this.descSrc = value;
     },
     setAuthor(e) {
-      const value = e.target.value;
+      const value = e.target.value? e.target.value: this.userEmail;
       this.authorSrc = value;
     },
     setDate(e) {
@@ -135,6 +137,18 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.btn {
+  background-color: #008CBA; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
 div.joke {
   margin: 15px;
   border: 1px solid #ccc;
