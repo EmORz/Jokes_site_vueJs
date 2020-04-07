@@ -10,6 +10,7 @@ import NotFound from "./components/NotFound.vue";
 import About from "./components/About.vue";
 import Protected from "./components/Protected.vue";
 import Error from "./components/Error.vue";
+import Personinfo from "./components/PersonInfo.vue";
 
 import store from "./store";
 
@@ -29,14 +30,7 @@ function authGuard(to, from, next) {
     next();
   }
 }
-// function homeGuard(to, from, next) {
-//   if (
-//     localStorage.getItem("token") === null ||
-//     localStorage.getItem("token") !== null
-//   ) {
-//     next("/home");
-//   }
-// }
+
 
 const routes = [
   {
@@ -50,6 +44,7 @@ const routes = [
   { path: "/createjoke", component: Createjoke, beforeEnter: authGuard },
   { path: "/Jokesites", component: Jokesites }, 
    { path: "/Error", component: Error },
+   { path: "/Personinfo", component: Personinfo, beforeEnter: authGuard },
   
   {
     path: "/edit/:id",

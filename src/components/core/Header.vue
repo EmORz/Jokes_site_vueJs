@@ -18,13 +18,14 @@
           <li v-if="isAuth">
             <a @click="onLogout" class="logout">Logout</a>
           </li>
-           <li>
+          <li v-if="isAuth">
+            <router-link to="/personinfo">Info for Jokes</router-link>
+          </li>
+          <li>
             <router-link to="/about">About</router-link>
           </li>
         </ul>
       </nav>
-
-  
     </section>
     <digital-clock :blink="true" class="clock-center" />
     <section>
@@ -37,10 +38,10 @@ import DigitalClock from "vue-digital-clock";
 
 export default {
   components: {
-    DigitalClock
+    DigitalClock,
   },
   props: {
-    isAuth: Boolean
+    isAuth: Boolean,
   },
   methods: {
     onLogout() {
@@ -49,8 +50,8 @@ export default {
       localStorage.clear();
 
       this.$emit("onAuth", false);
-    }
-  }
+    },
+  },
 };
 </script>
 
