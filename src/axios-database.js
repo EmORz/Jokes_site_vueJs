@@ -15,9 +15,8 @@ instance.interceptors.request.use((config) => {
   // header -> Authorization (Basic/Kinvey)
   if (localStorage.getItem("token")) {
     config.url = `${config.url}?auth=${localStorage.getItem("token")}`;
-  } else {
-    config.url = `${config.url}`;
   }
+  config.url = `${config.url}`;
 
   return config;
 });

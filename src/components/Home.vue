@@ -1,31 +1,59 @@
 <template>
   <div class="container">
     <div>
-      <h1 v-if="userEmail">Wellcome {{userEmail}}!</h1>
+      <h1 v-if="userEmail">Wellcome {{ userEmail }}!</h1>
       <h1 v-else>Wellcome!</h1>
       <hr class="hrTitle" size="30" />
-      <div v-for="(j, i) in posts" class="joke" :key="i">
-        <div>
-          <h2>{{ j.title }}</h2>
-          <h5>Категория: {{ j.category }}</h5>
+      <div v-if="isAuth">
+        <div v-for="(j, i) in posts" class="joke" :key="i">
+          <div>
+            <h2>{{ j.title }}</h2>
+            <h5>Категория: {{ j.category }}</h5>
+          </div>
+          <div class="desc">
+            <template v-if="j.showDescription">
+              <p>
+                {{ j.description }}
+              </p>
+              <p><b>Дата:</b>{{ j.date | formatDate }}</p>
+              <p><b>Автор:</b>{{ j.author }}</p>
+              <button @click="j.showDescription = false" class="show-desc btnH">
+                Show Less
+              </button>
+            </template>
+            <template v-else>
+              <button @click="j.showDescription = true" class="show-desc btnS">
+                Show more
+              </button>
+            </template>
+            <hr class="hrJokes" size="3" />
+          </div>
         </div>
-        <div class="desc">
-          <template v-if="j.showDescription">
-            <p>
-              {{ j.description }}
-            </p>
-            <p><b>Дата:</b>{{ j.date | formatDate }}</p>
-            <p><b>Автор:</b>{{ j.author }}</p>
-            <button @click="j.showDescription = false" class="show-desc btnH">
-              Show Less
-            </button>
-          </template>
-          <template v-else>
-            <button @click="j.showDescription = true" class="show-desc btnS">
-              Show more
-            </button>
-          </template>
-          <hr class="hrJokes" size="3" />
+      </div>
+       <div v-if="!isAuth">
+        <div v-for="(j, i) in posts" class="joke" :key="i">
+          <div>
+            <h2>{{ j.title }}</h2>
+            <h5>Категория: {{ j.category }}</h5>
+          </div>
+          <div class="desc">
+            <template v-if="j.showDescription">
+              <p>
+                {{ j.description }}
+              </p>
+              <p><b>Дата:</b>{{ j.date | formatDate }}</p>
+              <p><b>Автор:</b>{{ j.author }}</p>
+              <button @click="j.showDescription = false" class="show-desc btnH">
+                Show Less
+              </button>
+            </template>
+            <template v-else>
+              <button @click="j.showDescription = true" class="show-desc btnS">
+                Show more
+              </button>
+            </template>
+            <hr class="hrJokes" size="3" />
+          </div>
         </div>
       </div>
     </div>
@@ -42,10 +70,8 @@ export default {
   name: "Home",
   mounted() {
     console.log("EMAIL!");
-    if (localStorage.getItem("email"))
-      this.userEmail = localStorage.getItem("email");
-      
-     
+    this.userEmail = localStorage.getItem("email");
+    localStorage.getItem('token');
   },
   props: {
     isAuth: Boolean,
@@ -66,7 +92,7 @@ export default {
       dateSrc: new Date(),
       users: null,
       isLoading: false,
-      userEmail: ""
+      userEmail: "",
     };
   },
   methods: {

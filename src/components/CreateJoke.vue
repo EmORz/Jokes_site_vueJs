@@ -58,7 +58,7 @@
 import DBAxios from "@/axios-database";
 import postsMixin from "@/mixins/posts-mixin";
 export default {
-  name: "HelloWorld",
+  name: "CreateJoke",
   props: {
     msg: String,
   },
@@ -93,12 +93,7 @@ export default {
         returnSecureToken: true,
       };
       DBAxios.post(`posts.json`, payload)
-        .then((res) => {
-          const { idToken, localId } = res.data;
-
-          localStorage.setItem("token", idToken);
-          localStorage.setItem("userId", localId);
-
+        .then(() => {
           this.$router.push("/home");
         })
         .catch((err) => {
@@ -123,7 +118,7 @@ export default {
       this.descSrc = value;
     },
     setAuthor(e) {
-      const value = e.target.value? e.target.value: this.userEmail;
+      const value = e.target.value ? e.target.value : this.userEmail;
       this.authorSrc = value;
     },
     setDate(e) {
@@ -138,7 +133,7 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .btn {
-  background-color: #008CBA; /* Green */
+  background-color: #008cba; /* Green */
   border: none;
   color: white;
   padding: 15px 32px;

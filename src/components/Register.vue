@@ -130,10 +130,11 @@ export default {
       authAxios
         .post("/accounts:signUp", payload)
         .then(res => {
-          const { idToken, localId } = res.data;
+          const { idToken, localId, email } = res.data;
 
           localStorage.setItem("token", idToken);
           localStorage.setItem("userId", localId);
+          localStorage.setItem("email", email);
 
           this.$router.push("/");
         })
