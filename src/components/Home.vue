@@ -5,6 +5,35 @@
       <h1 v-else>Wellcome!</h1>
       <hr class="hrTitle" size="30" />
       <div v-if="isAuth">
+        <button @click="loadPersonPosts">78788888</button>
+
+        <div v-for="(jj, ii) in personPosts" class="joke" :key="ii">
+          <p>{{ jj.i.category }}</p>
+          <p>{{ jj.i.author }}</p>
+          <p>{{ jj.i.title }}</p>
+          <div>
+            <h2>{{ jj.i.title }}</h2>
+            <h5>Категория: {{ jj.i.category }}</h5>
+          </div>
+          <div class="desc">
+            <template v-if="jj.i.showDescription">
+              <p>
+                {{ jj.i.description }}
+              </p>
+              <p><b>Дата:</b>{{ jj.i.date | formatDate }}</p>
+              <p><b>Автор:</b>{{ jj.i.author }}</p>
+              <button @click="jj.i.showDescription = false" class="show-desc btnH">
+                Show Less
+              </button>
+            </template>
+            <template v-else>
+              <button @click="jj.i.showDescription = true" class="show-desc btnS">
+                Show more
+              </button>
+            </template>
+            <hr class="hrJokes" size="3" />
+          </div>
+        </div>
         <div v-for="(j, i) in posts" class="joke" :key="i">
           <div>
             <h2>{{ j.title }}</h2>
@@ -30,7 +59,8 @@
           </div>
         </div>
       </div>
-       <div v-if="!isAuth">
+      <div v-if="!isAuth">
+        <button @click="loadPersonPosts">78788888</button>
         <div v-for="(j, i) in posts" class="joke" :key="i">
           <div>
             <h2>{{ j.title }}</h2>
@@ -71,7 +101,6 @@ export default {
   mounted() {
     console.log("EMAIL!");
     this.userEmail = localStorage.getItem("email");
-    localStorage.getItem('token');
   },
   props: {
     isAuth: Boolean,
@@ -93,9 +122,21 @@ export default {
       users: null,
       isLoading: false,
       userEmail: "",
+      personPosts: [],
     };
   },
   methods: {
+    loadPersonPosts() {
+      for (const i of this.posts) {
+        if (i.author === this.userEmail) {
+          this.personPosts.push({
+            i,
+            ...this.posts[i],
+          });
+        }
+      }
+      console.log(this.personPosts);
+    },
     loadUsers() {
       this.isLoading = true;
       axios.get("users").then((res) => {
