@@ -41,7 +41,7 @@
             </button>
           </template>
           <template>
-            <button @click="remove(jj.i.postId)" class="show-desc btnS">
+            <button @click="remove(jj.i.postId)" class="show-desc btnDelete">
               Delete!!!
             </button>
           </template>
@@ -104,19 +104,11 @@ export default {
       }
     },
     remove(postId) {
-     axiosDb.delete("/posts/"+postId+".json").then((res) =>{
-        console.log(res)
-      });
-      // axios
-      //   .delete(
-      //     `https://project-joke-51594.firebaseio.com/posts/${postId}.json`,
-      //     {
-      //        headers: { "Content-Type": "application/json" }
-      //     }
-      //   )
-      //   .then((response) => {
-      //     console.log(response);
-      //   });
+      if (confirm("Потвърдете, че искате да изтриете елемента!")) {
+        axiosDb.delete("/posts/" + postId + ".json").then((res) => {
+          console.log(res);
+        });
+      }
     },
   },
 };
@@ -179,8 +171,11 @@ a {
 }
 .btnS {
   background-color: palegreen;
-} /* Blue */
+}
+.btnDelete {
+  background-color: red;
+}
 .btnH {
   background-color: aqua;
-} /* Red */
+}
 </style>
