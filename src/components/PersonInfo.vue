@@ -1,15 +1,22 @@
 <template>
   <div>
     <div v-if="isAuth">
+      <h3 v-if="countJokes > 0">
+        Вие сте автор на: {{ countJokes }}бр. вицове :)
+      </h3>
+      <div>
+        <h3>Регистриран сте с имейл: {{ userEmail }}</h3>
+      </div>
+      <!-- <h3 v-else>Все още не сте създали виц/вицове :)</h3> -->
       <button @click="loadPersonPosts" class="btn">
         Виж създадените вицове!
       </button>
 
-      <h3 v-if="countJokes>0"><p>{{ countJokes }}</p></h3>
       <div v-for="(jj, ii) in personPosts" class="joke" :key="ii">
         <p>{{ jj.i.category }}</p>
         <p>{{ jj.i.author }}</p>
         <p>{{ jj.i.title }}</p>
+        <p>{{ jj.i.postId }}</p>
         <div>
           <h2>{{ jj.i.title }}</h2>
           <h5>Категория: {{ jj.i.category }}</h5>
@@ -33,6 +40,11 @@
               Show more
             </button>
           </template>
+          <template>
+            <button @click="remove(jj.i.postId)" class="show-desc btnS">
+              Delete!!!
+            </button>
+          </template>
           <hr class="hrJokes" size="3" />
         </div>
       </div>
@@ -42,6 +54,7 @@
 
 <script>
 import postsMixin from "@/mixins/posts-mixin";
+import axios from "axios";
 
 export default {
   name: "PersonInfo",
@@ -59,7 +72,7 @@ export default {
   created() {
     this.getAllPosts();
   },
-  data: function () {
+  data: function() {
     return {
       catSrc: "category of joke :)",
       titleSrc: "title of joke",
@@ -87,6 +100,13 @@ export default {
         }
         this.countJokes = this.personPosts.length;
       }
+    },
+    remove(postId) {
+      axios
+        .delete(`https://project-joke-51594.firebaseio.com/${postId}.json`)
+        .then((response) => {
+          console.log(response);
+        });
     },
   },
 };

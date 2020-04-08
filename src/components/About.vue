@@ -67,6 +67,11 @@
 import DBAxios from "@/axios-database";
 
 export default {
+    data: function () {
+    return {    
+      descSrc: "description ..............",    
+    };
+  },
   methods: {
     createQuestion() {
       const payload = {
