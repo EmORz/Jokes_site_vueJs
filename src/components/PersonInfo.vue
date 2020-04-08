@@ -13,10 +13,6 @@
       </button>
 
       <div v-for="(jj, ii) in personPosts" class="joke" :key="ii">
-        <p>{{ jj.i.category }}</p>
-        <p>{{ jj.i.author }}</p>
-        <p>{{ jj.i.title }}</p>
-        <p>{{ jj.i.postId }}</p>
         <div>
           <h2>{{ jj.i.title }}</h2>
           <h5>Категория: {{ jj.i.category }}</h5>
@@ -45,8 +41,66 @@
               Delete!!!
             </button>
           </template>
+          <template>
+            <button @click="edit(jj.i.postId)" class="show-desc btnDelete">
+              Edit!!!
+            </button>
+          </template>
+
           <hr class="hrJokes" size="3" />
+
+          <!-- <h5>Категория: {{ editPost[0]["category"] }}</h5> -->
         </div>
+      </div>
+      <div v-if="check">
+        <form @submit.prevent="editJoke(id)" class="user-form">
+          <label for="category">Category</label><br />
+          <input
+            @input="setCatSource"
+            :value="editPost[0].category"
+            type="text"
+            id="category"
+            placeholder="Your category of joke .."
+          /><br />
+          <label for="title">Title</label><br />
+          <input
+            @input="setTitle"
+            :value="editPost[0].title"
+            type="text"
+            id="title"
+            placeholder="Your title of joke .."
+          /><br />
+          <label for="description">Description</label><br />
+          <textarea
+            @input="setDesc"
+            :value="editPost[0].description"
+            type="text"
+            id="description"
+            placeholder="Your description of joke .."
+          ></textarea
+          ><br />
+          <label for="author">Author</label><br />
+
+          <input
+            @input="setAuthor"
+            :value="editPost[0].author"
+            type="text"
+            id="author"
+            placeholder="Your author of joke .."
+            readonly
+          /><br />
+          <label for="date">Date</label><br />
+          <input
+            @input="setDate"
+            :value="editPost[0].date"
+            type="text"
+            id="date"
+            placeholder="Your date of joke .."
+            readonly
+          /><br />
+
+          <button type="submit" class="btn">Send</button>
+        </form>
       </div>
     </div>
   </div>
@@ -61,7 +115,6 @@ import axiosDb from "@/axios-database";
 export default {
   name: "PersonInfo",
   mounted() {
-    console.log("EMAIL Person!");
     this.userEmail = localStorage.getItem("email");
   },
   props: {
@@ -76,18 +129,23 @@ export default {
   },
   data: function() {
     return {
-      catSrc: "category of joke :)",
-      titleSrc: "title of joke",
+      catSrc: "",
+      titleSrc: "pesho",
       descSrc: "description ..............",
       authorSrc: "enter author name ...........",
       dateSrc: new Date(),
       users: null,
       isLoading: false,
-      userEmail: "",
+      userEmail: this.userEmail,
       personPosts: [],
       countJokes: 0,
+      editPost: [],
+      check: false,
+      showDescription: false,
+      id: ""
     };
   },
+
   methods: {
     loadPersonPosts() {
       event.preventDefault();
@@ -109,6 +167,55 @@ export default {
           console.log(res);
         });
       }
+    },
+    edit(postId) {
+      axiosDb.get("/posts/" + postId + ".json").then((res) => {
+        this.editPost.push(res.data);
+        this.editPost.push(postId);
+        this.id = postId;
+        this.check = true;
+      });
+    },
+    setTitle(e) {
+      const value = e.target.value;
+      this.titleSrc = this.editPost[0].title;
+      this.titleSrc = value;
+    },
+    setCatSource(e) {
+      const value = e.target.value;
+      this.catSrc = this.editPost[0].category;
+      this.catSrc = value;
+    },
+    setDesc(e) {
+      const value = e.target.value;
+      this.descSrc = this.editPost[0].description;
+      this.descSrc = value;
+    },
+    setAuthor(e) {
+      const value = e.target.value;
+      this.authorSrc = this.editPost[0].author;
+      this.authorSrc = value;
+    },
+    setDate(e) {
+      const value = e.target.value;
+      this.dateSrc = this.editPost[0].date;
+      this.dateSrc = value;
+    },
+    editJoke(postId) {
+      console.log(postId)
+      const payload = {
+        category: this.catSrc,
+        title: this.titleSrc,
+        description: this.descSrc,
+        author: this.userEmail,
+        date: this.dateSrc,
+        showDescription: this.showDescription,
+        returnSecureToken: true,
+      };
+
+      axiosDb.put("/posts/" + postId + ".json", payload).then((res) => {
+        console.log(res);
+      });
     },
   },
 };
