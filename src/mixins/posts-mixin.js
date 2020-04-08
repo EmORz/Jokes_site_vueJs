@@ -22,7 +22,7 @@ export default {
       } catch (err) {
         console.log(err);
       }
-    },
+    }
     // async getPersonalPosts() {
     //   try {
     //     const res = await axiosDb.get(`posts.json`);

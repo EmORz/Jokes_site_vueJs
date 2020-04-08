@@ -54,7 +54,9 @@
 
 <script>
 import postsMixin from "@/mixins/posts-mixin";
-import axios from "axios";
+import axiosDb from "@/axios-database";
+
+//import axios from "axios";
 
 export default {
   name: "PersonInfo",
@@ -102,11 +104,19 @@ export default {
       }
     },
     remove(postId) {
-      axios
-        .delete(`https://project-joke-51594.firebaseio.com/${postId}.json`)
-        .then((response) => {
-          console.log(response);
-        });
+     axiosDb.delete("/posts/"+postId+".json").then((res) =>{
+        console.log(res)
+      });
+      // axios
+      //   .delete(
+      //     `https://project-joke-51594.firebaseio.com/posts/${postId}.json`,
+      //     {
+      //        headers: { "Content-Type": "application/json" }
+      //     }
+      //   )
+      //   .then((response) => {
+      //     console.log(response);
+      //   });
     },
   },
 };
