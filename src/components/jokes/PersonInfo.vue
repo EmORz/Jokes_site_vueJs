@@ -166,7 +166,7 @@ export default {
     edit(postId) {
       axiosDb.get("/posts/" + postId + ".json").then((res) => {
         this.editPost.push(res.data);
-        this.editPost.push(postId);
+       
         this.id = postId;
         this.check = true;
       });
@@ -197,7 +197,7 @@ export default {
       this.dateSrc = value;
     },
     editJoke(postId) {
-      console.log(postId);
+      //console.log(postId);
       const payload = {
         category: this.catSrc,
         title: this.titleSrc,
@@ -207,7 +207,7 @@ export default {
         showDescription: this.showDescription,
         returnSecureToken: true,
       };
-
+      console.log(payload.category)
       axiosDb.put("/posts/" + postId + ".json", payload).then((res) => {
         console.log(res);
       });
