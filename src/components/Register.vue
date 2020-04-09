@@ -2,27 +2,6 @@
   <app-content>
     <template v-slot:info>
       <form @submit.prevent="onSignUp" class="user-form">
-        <!-- <div class="form-group">
-          <label for="username">
-            <img
-              src="https://img.icons8.com/material-sharp/42/000000/user.png"
-            />
-          </label>
-          <input
-            id="username"
-            type="text"
-            name="username"
-            placeholder="Username"
-            v-model="username"
-            @blur="$v.username.$touch"
-          />
-          <template v-if="$v.username.$error">
-            <div v-if="!$v.username.required">Username is requerd!</div>
-            <div v-if="!$v.username.minLength">
-              Username should be more than 3 symbols!
-            </div>
-          </template>
-        </div> -->
         <div class="form-group">
           <label for="email">
             <img src="https://img.icons8.com/metro/26/000000/email.png" />
@@ -101,35 +80,33 @@ function sameAs(field) {
     return this[field] === value;
   };
 }
-import testMixin from "../mixins/test";
 import authAxios from "@/axios-auth";
 
 export default {
   data() {
     return {
-      
       email: "",
       password: "",
       rePassword: "",
-      success: false
+      success: false,
     };
   },
-  mixins: [validationMixin, testMixin],
+  mixins: [validationMixin],
   components: {
-    AppContent
+    AppContent,
   },
   methods: {
     onSignUp() {
       const payload = {
         email: this.email,
         password: this.password,
-        returnSecureToken: true
+        returnSecureToken: true,
       };
 
       // Project Settings -> Web API key
       authAxios
         .post("/accounts:signUp", payload)
-        .then(res => {
+        .then((res) => {
           const { idToken, localId, email } = res.data;
 
           localStorage.setItem("token", idToken);
@@ -138,29 +115,28 @@ export default {
 
           this.$router.push("/");
         })
-        .catch(err => {
+        .catch((err) => {
           console.error(err);
         });
-    }
-
+    },
   },
 
   validations: {
     username: {
       required,
-      minLength: minLength(5)
+      minLength: minLength(5),
     },
     password: {
       required,
-      minLength: minLength(8)
+      minLength: minLength(8),
     },
     rePassword: {
-      sameAs: sameAs("password")
+      sameAs: sameAs("password"),
     },
     email: {
-      required
-    }
-  }
+      required,
+    },
+  },
 };
 </script>
 

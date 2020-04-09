@@ -50,12 +50,11 @@
 import AppContent from "./shared/Content";
 import { validationMixin } from "vuelidate";
 import { required } from "vuelidate/lib/validators";
-import testMixin from "../mixins/test";
 
 import authAxios from "@/axios-auth";
 
 export default {
-  mixins: [validationMixin, testMixin],
+  mixins: [validationMixin],
   components: {
     AppContent
   },

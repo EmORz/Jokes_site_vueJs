@@ -23,20 +23,6 @@ export default {
         console.log(err);
       }
     }
-    // async getPersonalPosts() {
-    //   try {
-    //     const res = await axiosDb.get(`posts.json`);
-    //     const allPostsRes = res.data;
-    //     for (const postId in allPostsRes) {
-
-    //       this.posts.push({
-    //         postId,
-    //         ...allPostsRes[postId],
-    //       });
-    //     }
-    //   } catch (err) {
-    //     console.log(err);
-    //   }
-    // },
+ 
   },
 };

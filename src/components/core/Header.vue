@@ -12,6 +12,7 @@
           <li v-if="!isAuth">
             <router-link to="/register">Register</router-link>
           </li>
+       
           <li v-if="isAuth">
             <router-link to="/createjoke">Cretae Joke</router-link>
           </li>
@@ -23,6 +24,9 @@
           </li>
           <li>
             <router-link to="/about">About</router-link>
+          </li>
+             <li>
+            <router-link to="/Jokesites">Още сайтове с вицове</router-link>
           </li>
         </ul>
       </nav>

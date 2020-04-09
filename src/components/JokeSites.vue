@@ -1,7 +1,8 @@
 <template>
-  <div id="container">
+  <div >
     <div v-for="(j, i) in jokes_sites" class="joke" :key="i">
-      <p>{{j.https}}</p>
+      <!-- //<p>{{j.https}}</p> -->
+      <h3> <a :href="j.https">{{j.https}}</a> </h3>
     
     </div>
   </div>
@@ -45,4 +46,12 @@ export default {
   }
 };
 </script>
-<style scoped></style>
+<style scoped>
+div.joke {
+  margin: 20px;
+  border: 1px solid #ccc;
+  float: left;
+  width: 290px;
+  background-color: greenyellow;
+}
+</style>

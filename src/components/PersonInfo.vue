@@ -46,10 +46,7 @@
               Edit!!!
             </button>
           </template>
-
           <hr class="hrJokes" size="3" />
-
-          <!-- <h5>Категория: {{ editPost[0]["category"] }}</h5> -->
         </div>
       </div>
       <div v-if="check">
@@ -110,8 +107,6 @@
 import postsMixin from "@/mixins/posts-mixin";
 import axiosDb from "@/axios-database";
 
-//import axios from "axios";
-
 export default {
   name: "PersonInfo",
   mounted() {
@@ -142,7 +137,7 @@ export default {
       editPost: [],
       check: false,
       showDescription: false,
-      id: ""
+      id: "",
     };
   },
 
@@ -202,7 +197,7 @@ export default {
       this.dateSrc = value;
     },
     editJoke(postId) {
-      console.log(postId)
+      console.log(postId);
       const payload = {
         category: this.catSrc,
         title: this.titleSrc,

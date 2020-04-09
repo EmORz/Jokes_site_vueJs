@@ -62,7 +62,7 @@
 </template>
 
 <script>
-import testMixin from "../mixins/test";
+
 import postsMixin from "@/mixins/posts-mixin";
 
 import axios from "axios";
@@ -76,7 +76,7 @@ export default {
   props: {
     isAuth: Boolean,
   },
-  mixins: [testMixin, postsMixin],
+  mixins: [ postsMixin],
   beforeCreate() {
     this.$emit("onAuth", localStorage.getItem("token") !== null);
   },
