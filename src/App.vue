@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <app-header  @onAuth="isAuth = $event" :isAuth="isAuth"> </app-header>
+    <app-header @onAuth="isAuth = $event" :isAuth="isAuth"> </app-header>
 
     <div class="main">
       <router-view @onAuth="isAuth = $event" :isAuth="isAuth"></router-view>
@@ -13,8 +13,6 @@
 
 <script>
 import DigitalClock from "vue-digital-clock";
-//import AppHome from "./components/Home";
-
 import AppHeader from "./components/core/Header";
 import AppFooter from "./components/core/Footer";
 
@@ -23,13 +21,13 @@ export default {
   components: {
     AppHeader,
     AppFooter,
-    DigitalClock
+    DigitalClock,
   },
   data: function() {
     return {
-      isAuth: localStorage.getItem("token") !== null
+      isAuth: localStorage.getItem("token") !== null,
     };
-  }
+  },
 };
 </script>
 
