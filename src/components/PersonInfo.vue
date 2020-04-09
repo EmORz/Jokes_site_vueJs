@@ -42,7 +42,7 @@
             </button>
           </template>
           <template>
-            <button @click="edit(jj.i.postId)" class="show-desc btnDelete">
+            <button @click="edit(jj.i.postId)" class="show-desc btnEdit">
               Edit!!!
             </button>
           </template>
@@ -281,6 +281,9 @@ a {
 }
 .btnDelete {
   background-color: red;
+}
+.btnEdit {
+  background-color: yellow;
 }
 .btnH {
   background-color: aqua;
