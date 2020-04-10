@@ -40,7 +40,7 @@
         </div>
 
         <!-- <button>Login</button> -->
-        <button>Login</button>
+        <button :disabled="$v.$invalid">Login</button>
       </form>
     </template>
   </app-content>

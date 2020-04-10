@@ -64,7 +64,7 @@
           </template>
         </div>
 
-        <button>Register</button>
+        <button :disabled="$v.$invalid">Register</button>
       </form>
     </template>
   </app-content>
@@ -88,25 +88,25 @@ export default {
       email: "",
       password: "",
       rePassword: "",
-      success: false,
+      success: false
     };
   },
   mixins: [validationMixin],
   components: {
-    AppContent,
+    AppContent
   },
   methods: {
     onSignUp() {
       const payload = {
         email: this.email,
         password: this.password,
-        returnSecureToken: true,
+        returnSecureToken: true
       };
 
       // Project Settings -> Web API key
       authAxios
         .post("/accounts:signUp", payload)
-        .then((res) => {
+        .then(res => {
           const { idToken, localId, email } = res.data;
 
           localStorage.setItem("token", idToken);
@@ -115,28 +115,28 @@ export default {
 
           this.$router.push("/");
         })
-        .catch((err) => {
+        .catch(err => {
           console.error(err);
         });
-    },
+    }
   },
 
   validations: {
     username: {
       required,
-      minLength: minLength(5),
+      minLength: minLength(5)
     },
     password: {
       required,
-      minLength: minLength(8),
+      minLength: minLength(8)
     },
     rePassword: {
-      sameAs: sameAs("password"),
+      sameAs: sameAs("password")
     },
     email: {
-      required,
-    },
-  },
+      required
+    }
+  }
 };
 </script>
 
