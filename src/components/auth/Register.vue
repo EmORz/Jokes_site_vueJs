@@ -64,7 +64,7 @@
           </template>
         </div>
 
-        <button :disabled="$v.$invalid">Register</button>
+        <button >Register</button>
       </form>
     </template>
   </app-content>
